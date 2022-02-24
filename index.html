@@ -72,10 +72,10 @@
             }
 
             function getSingleDay() {
-                let date = new Date(document.getElementById('singleDay').value.split('-'));
+                let date = new Date(document.getElementById('singleDay').value);
 
                 if (!isValidDate(date)) {
-                    alert("Invalid date selected!")
+                    alert(`Invalid date selected! ${date}, ${document.getElementById('singleDay').value}`)
                     return;
                 }
 
