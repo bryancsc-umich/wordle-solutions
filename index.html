@@ -46,8 +46,8 @@
             }
 
             function getRange() {
-                let startCurr = new Date(document.getElementById('start').value.split('-'));
-                let endCurr = new Date(document.getElementById('end').value.split('-'));
+                let startCurr = new Date(document.getElementById('start').value);
+                let endCurr = new Date(document.getElementById('end').value);
 
                 if (!isValidDate(startCurr)) {
                     alert("Invalid start date!")
