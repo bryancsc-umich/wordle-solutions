@@ -46,43 +46,47 @@
             }
 
             function getRange() {
-                let start = new Date(document.getElementById('start').value.split('-'));
-                let end = new Date(document.getElementById('end').value.split('-'));
-                
-                console.log(start);
-                console.log(end);
+                let startCurr = new Date(document.getElementById('start').value.split('-'));
+                let endCurr = new Date(document.getElementById('end').value.split('-'));
 
-                if (!isValidDate(start)) {
+                if (!isValidDate(startCurr)) {
                     alert("Invalid start date!")
                     return
-                } else if (!isValidDate(end)) {
+                } else if (!isValidDate(endCurr)) {
                     alert("Invalid end date!")
                     return
-                } else if (end - start < 0) {
-                    alert("End date cannot be less than start date")
+                } else if (endCurr < startCurr) {
+                    alert("End date cannot be less than start date!")
                     return
                 }
 
+                let startUTC = new Date(startCurr.getUTCFullYear(), startCurr.getUTCMonth(), startCurr.getUTCDate());
+                let endUTC = new Date(endCurr.getUTCFullYear(), endCurr.getUTCMonth(), endCurr.getUTCDate());
+
+                console.log(`Range: ${startUTC} to ${endUTC}`)
+
                 clearOutput();
-                let today = start;
-                while (start <= end) {
+                let today = startUTC;
+                while (today <= endUTC) {
                     printOutput(`${today.toDateString()} : ${getSolution(today)}\n`);
                     today.setDate(today.getDate()+1);
                 }
             }
 
             function getSingleDay() {
-                let date = new Date(document.getElementById('singleDay').value.split('-'));
+                let dateCurr = new Date(document.getElementById('singleDay').value);
 
-                if (!isValidDate(date)) {
+                if (!isValidDate(dateCurr)) {
                     alert("Invalid date selected!")
                     return;
                 }
 
-                console.log(date);
+                let dateUTC = new Date(dateCurr.getUTCFullYear(), dateCurr.getUTCMonth(), dateCurr.getUTCDate());
+
+                console.log(`Single Day: ${dateUTC}`);
 
                 clearOutput();
-                printOutput(`${date.toDateString()} : ${getSolution(date)}\n`);
+                printOutput(`${dateUTC.toDateString()} : ${getSolution(dateUTC)}\n`);
             }
         </script>
     </head>
